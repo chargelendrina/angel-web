@@ -21,14 +21,15 @@ jobs:
 
       - name: Prepare site
         run: |
-          mkdir public
-          if [ "${{ github.ref_name }}" = "main" ]; then
-            cp -r docs/* public/
-          else
-            mkdir -p public/dev
-            cp -r docs/* public/dev/
-          fi
+          mkdir -p public
+          mkdir -p public/dev
 
+          # Always build root
+          cp -r docs/* public/
+
+          # Always build dev copy
+          cp -r docs/* public/dev/
+    
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
