@@ -22,12 +22,11 @@ jobs:
       - name: Prepare site
         run: |
           mkdir public
-          if [ "${{ github.ref_name }}" = "develop" ]; then
+          if [ "${{ github.ref_name }}" = "main" ]; then
             cp -r docs/* public/
+          else
             mkdir -p public/dev
             cp -r docs/* public/dev/
-          else
-            cp -r docs/* public/
           fi
 
       - name: Upload artifact
